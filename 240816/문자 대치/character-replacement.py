@@ -1,10 +1,12 @@
 s = input()
+# X와 .이 아닌 문자 삭제하는 코드 추가함
 new_s = ''
 for c in s:
     if c not in ['X', '.']:
         continue
     new_s += c
 s = new_s
+#
 len_s = len(s)
 dp = ['']*(len_s)
 if len_s > 50:
