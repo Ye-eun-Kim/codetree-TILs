@@ -17,6 +17,7 @@ for i in range(len_s):
     c = s[i]
     if c == '.':
         dp[i] = dp[i-1] + '.'
+        tmp = 0
         continue
     if c == 'X':
         tmp+=1
