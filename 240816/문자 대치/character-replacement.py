@@ -1,4 +1,10 @@
 s = input()
+new_s = ''
+for c in s:
+    if c not in ['X', '.']:
+        continue
+    new_s += c
+s = new_s
 len_s = len(s)
 dp = ['']*(len_s)
 if len_s > 50:
