@@ -1,7 +1,8 @@
 s = input()
 len_s = len(s)
 dp = ['']*(len_s)
-
+if len_s > 50:
+    exit()
 
 tmp = 0
 for i in range(len_s):
