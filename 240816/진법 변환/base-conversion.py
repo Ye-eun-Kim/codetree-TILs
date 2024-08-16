@@ -1,5 +1,9 @@
 n, m =input().split()
 m = int(m)
+if m in range(2, 37):
+    pass
+else:
+    exit()
 
 tot = 0
 len_n = len(n)
