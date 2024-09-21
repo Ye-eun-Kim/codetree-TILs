@@ -102,7 +102,7 @@ def sMove(sr, sc, santa_num, turn):
             graph[sr][sc] = 0
             return
         else: # 있으면 다른 산타랑 충돌하는지(상호작용) 확인
-            if graph[nsr][nsc] != 0: # 충돌
+            if graph[nsr][nsc] != 0 and graph[nsr][nsc] != santa_num: # 충돌
                 align(nsr, nsc, direction) # 뒤로 한 칸씩
     graph[sr][sc] = 0
     graph[nsr][nsc] = santa_num
@@ -128,6 +128,8 @@ def main():
         i, sr, sc = map(int, input().split())
         graph[sr][sc] = i
         s_loc[i] = (sr, sc)
+    # printGraph(0)
+    # print()
     for j in range(1, m+1):
         rMove(j)
         for k in range(1, p + 1):  # 산타 기절 여부 확인
