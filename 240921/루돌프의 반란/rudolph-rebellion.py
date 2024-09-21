@@ -20,6 +20,7 @@ def cal(sr, sc):
 # 가장 가까운 산타를 찾는 함수
 def findS():
     dist = int(1e9)
+    sr, sc = 0, 0
     santa_num = 0
     for i in range(n, 0, -1):
         for j in range(n, 0, -1):
@@ -140,6 +141,8 @@ def main():
         for k in range(1, p+1):
             if s_state[k] != -1:
                 s_val[k] += 1
+        if s_state.count(-1) == p:  # 조기 종료 조건
+            break
         # printGraph(j)
         # print()
     for m in range(1, p+1):
