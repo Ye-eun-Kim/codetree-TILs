@@ -77,8 +77,8 @@ def rMove(turn):
 # 산타 한 명의 움직임
 def sMove(sr, sc, santa_num, turn):
     # 가까워지는 방향의 좌표 찾기
-    nsr, nsc = 0, 0
-    dist = int(1e9)
+    nsr, nsc = sr, sc
+    dist = cal(sr, sc)
     direction = 0
     for i in range(4): # 산타는 상하좌우만
         drr, dcc = sr + dr[i], sc + dc[i]
@@ -89,6 +89,8 @@ def sMove(sr, sc, santa_num, turn):
             nsr, nsc = drr, dcc
             direction = i
             dist = n_dist
+    if nsr == sr and nsc == sc: # 이동할 곳이 없을 때
+        return
     if nsr == rr and nsc == rc: # 충돌
         s_val[santa_num] += d # 산타 점수 + d
         s_state[santa_num] = turn # 턴 번호를 state로 설정
@@ -103,9 +105,17 @@ def sMove(sr, sc, santa_num, turn):
             if graph[nsr][nsc] != 0: # 충돌
                 align(nsr, nsc, direction) # 뒤로 한 칸씩
     graph[sr][sc] = 0
-    sr, sc = nsr, nsc
-    graph[sr][sc] = santa_num
-    s_loc[santa_num] = (sr, sc)
+    graph[nsr][nsc] = santa_num
+    s_loc[santa_num] = (nsr, nsc)
+
+def printGraph(turn):
+    print(turn, "th turn")
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            print(graph[i][j], end=' | ')
+        print()
+    print("s_state: ", s_state)
+    print("s_value: ", s_val)
 
 def main():
     global n, m, p, c, d
@@ -118,7 +128,7 @@ def main():
         i, sr, sc = map(int, input().split())
         graph[sr][sc] = i
         s_loc[i] = (sr, sc)
-    for j in range(m):
+    for j in range(1, m+1):
         rMove(j)
         for k in range(1, p + 1):  # 산타 기절 여부 확인
             if s_state[k] != 0 and (s_state[k] == -1 or s_state[k] >= j-1): # 아직 기절
@@ -128,6 +138,8 @@ def main():
         for k in range(1, p+1):
             if s_state[k] != -1:
                 s_val[k] += 1
+        # printGraph(j)
+        # print()
     for m in range(1, p+1):
         print(s_val[m], end=" ")
 
