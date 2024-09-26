@@ -51,18 +51,23 @@ def cal(r1, c1):
 # 가장 가까운 참가자 찾기
 def find_person():
     people.sort(key=lambda x: (x[1], x[0]))
-    d = people[0][1]
     r, c = people[0][0]
     idx = 0
     size = max(abs(r-er), abs(c-ec))
     for i in range(len(people)):
-        if people[i][1] > d:
-            break
         tr, tc = people[i][0]
+        if (r, c) == (tr, tc):
+            continue
         t_size = max(abs(tr-er), abs(tc-ec))
         if t_size < size:
             r, c = tr, tc
             idx = i
+        elif t_size == size:
+            if tr < r:
+                r, c = tr, tc
+            elif tr == r and tc < c:
+                r, c = tr, tc
+                idx = i
     return r, c
 
 def find_square():
@@ -136,7 +141,7 @@ q = []
 cnt = 0
 result = 0 # 이동 거리 합
 for i in range(K):
-    # if i == 1:
+    # if i == 4:
     #     print("now")
     # print(i, "th")
     # print_maze()
