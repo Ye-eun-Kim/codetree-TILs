@@ -59,7 +59,7 @@ def find_person():
         if people[i][1] > d:
             break
         tr, tc = people[i][0]
-        t_size = max(tr-er, tc-ec)
+        t_size = max(abs(tr-er), abs(tc-ec))
         if t_size < size:
             r, c = tr, tc
             idx = i
