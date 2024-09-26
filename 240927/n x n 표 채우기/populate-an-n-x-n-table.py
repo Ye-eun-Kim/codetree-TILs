@@ -32,4 +32,6 @@ for i in range(n):
 
 
 for k in range(n):
-    print(graph[k])
+    for j in range(n):
+        print(graph[k][j], end=" ")
+    print()
