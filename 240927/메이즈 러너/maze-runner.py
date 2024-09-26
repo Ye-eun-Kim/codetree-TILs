@@ -1,7 +1,5 @@
 from collections import deque
 
-file = open("sample.txt", "r")
-input = file.readline
 N, M, K = map(int, input().split())  # 미로 크기, 참가자 수, 게임 시간
 maze = [[0 for _ in range(N+1)] for _ in range(N+1)] # 1, 1을 시작점으로, n, n을 끝점으로
 for a in range(1, N+1):
