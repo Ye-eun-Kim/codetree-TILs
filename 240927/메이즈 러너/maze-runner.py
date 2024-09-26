@@ -54,7 +54,7 @@ def find_person():
     d = people[0][1]
     r, c = people[0][0]
     idx = 0
-    size = max(r-er, c-ec)
+    size = max(abs(r-er), abs(c-ec))
     for i in range(len(people)):
         if people[i][1] > d:
             break
@@ -136,6 +136,10 @@ q = []
 cnt = 0
 result = 0 # 이동 거리 합
 for i in range(K):
+    # if i == 1:
+    #     print("now")
+    # print(i, "th")
+    # print_maze()
     # 참가자별로 이동하기 = 방향 찾기+이동 가능 여부 파악
     for p in range(len(people)):
         if people[p][0] == -1:
@@ -175,8 +179,13 @@ for i in range(K):
         people.pop(idx)
 
     if len(people) == 0:  # 모든 참가자 탈락하면 종료
+        # print("no people")
+        # print(people)
         break
 
+    # print(result)
+    # print(people)
+    # print_maze()
 
     # 벽 범위 찾기
     # 벽 회전
@@ -185,6 +194,8 @@ for i in range(K):
     for m in range(len(people)):
         (pr, pc) = people[m][0]
         people[m][1] = cal(pr, pc)
+    # print_maze()
+    # print("="*100)
 
 
 print(result)
